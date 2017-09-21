@@ -9,20 +9,34 @@ ourApp.controller('HotelController', function($http){
     
     vm.addPet = function(){
         console.log('IN ADD PET:', vm.name, vm.breed, vm.color);
-        // $http ({
-        //     method: 
-        // })
-    }
+        var newPet = {
+            name: vm.name,
+            breed: vm.breed,
+            color: vm.color,
+            checkedin: vm.checkedin
+        }
+        
+        console.log('new pet: -------> XD: ', newPet);
+        $http ({
+            method: 'POST',
+            url: '/pet',
+            data: newPet
+            // data: { name: vm.name, breed: vm.breed, color: vm.color, checkedin: vm.checkedin}
+        }).then( function(response) {
+            console.log('post from server: ', response);
+            vm.getPet();
+        })
+    };
     
     vm.getPet = function() {
         console.log('in get');
         $http({
             method: 'GET',
             url: '/pet',
-        }) .then( function(response){
+        }).then( function(response){
             console.log('back from server with:', response);
             vm.pets = response.data;
         })
     }
     
-})
+});

@@ -8,7 +8,7 @@ var pet = require('./routes/pet');
 
 var port = 3000;
 
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json());
 app.use(express.static('public'));
 
 app.use('/', indexRouter);

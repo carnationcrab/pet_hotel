@@ -15,7 +15,7 @@
             <input type="text" id="name" placeholder="Pet's Name" ng-model="hc.name">
             <input type="text" id="breed" placeholder="Breed" ng-model="hc.breed">
             <input type="text" id="color" placeholder="Color" ng-model="hc.color">
-            <select name="checkedIn" id="checkedIn">
+            <select name="checkedIn" id="checkedIn" ng-model="hc.checkedin">
                 <option value=true>Check In</option>
                 <option value=false>Check Out</option>
             </select>
@@ -23,7 +23,7 @@
             {{ hc.petInfo }}
         </div>
         <h2>Inmates</h2>
-        <div ng-repeat="pet in hc.pets">
+        <div>
             <table>
                 <thead>
                     <tr>
@@ -34,11 +34,12 @@
                     </tr>
                 </thead>
                 <tbody >
-                    {{ 
-                        <tr>
-                            <td>name</td>
-                        </tr>
-                    }}
+                    <tr ng-repeat="pet in hc.pets">
+                        <td>{{pet.name}}</td>
+                        <td>{{pet.breed}}</td>
+                        <td>{{pet.color}}</td>
+                        <td>{{pet.checkedin}}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
