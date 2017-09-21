@@ -4,37 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="vendors/jquery.js"></script>
+    <script src="vendors/angularjs.js"></script>
     <script src="scripts/client.js"></script>
     <title>Pet Hotel</title>
 </head>
-<body>
-    <h1>Pet Hotel</h1>
-    <div id="addPets">
-        <input type="text" id="name" placeholder="Pet's Name">
-        <input type="text" id="breed" placeholder="Breed">
-        <input type="text" id="color" placeholder="Color">
-        <select name="checkedIn" id="checkedIn">
-            <option value=true>Check In</option>
-            <option value=false>Check Out</option>
-        </select>
-        <button id="addPet">Book 'em</button>
-    </div>
-    <h2>Inmates</h2>
-    <div id="inmates">
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Breed</th>
-                    <th>Color</th>
-                    <th>Checked In?</th>
-                </tr>
-            </thead>
-            <tbody id="petTable">
-            </tbody>
-        </table>
-    </div>
-    
+<body ng-app="ourApp">
+    <section ng-controller="HotelController as HC">
+        <h1>Pet Hotel</h1>
+        <div id="addPets">
+            <input type="text" id="name" placeholder="Pet's Name">
+            <input type="text" id="breed" placeholder="Breed">
+            <input type="text" id="color" placeholder="Color">
+            <select name="checkedIn" id="checkedIn">
+                <option value=true>Check In</option>
+                <option value=false>Check Out</option>
+            </select>
+            <button id="addPet">Book 'em</button>
+        </div>
+        <h2>Inmates</h2>
+        <div id="inmates">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Breed</th>
+                        <th>Color</th>
+                        <th>Checked In?</th>
+                    </tr>
+                </thead>
+                <tbody id="petTable">
+                </tbody>
+            </table>
+        </div>
+    </section>
 </body>
 </html>

@@ -32,7 +32,7 @@ router.post('/', function(req, res) {
             console.log(connectionError);
             res.sendStatus(500);
         } else {
-            var pQuery = 'INSERT INTO pet_hotel (name, breed, color, checkedIn) VALUES ($1, $2, $3, $4)';
+            var pQuery = 'INSERT INTO pet_hotel (name, bre  `   1ed, color, checkedIn) VALUES ($1, $2, $3, $4)';
             var valueArray = [ newPetObj.name, newPetObj.breed, newPetObj.color, newPetObj.checkedin ];
             client.query(pQuery, valueArray, function(queryError, resultObj) {
                 done();
