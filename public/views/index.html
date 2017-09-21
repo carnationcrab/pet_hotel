@@ -9,20 +9,21 @@
     <title>Pet Hotel</title>
 </head>
 <body ng-app="ourApp">
-    <section ng-controller="HotelController as HC">
+    <section ng-controller="HotelController as hc" ng-init="hc.getPet()">
         <h1>Pet Hotel</h1>
         <div id="addPets">
-            <input type="text" id="name" placeholder="Pet's Name">
-            <input type="text" id="breed" placeholder="Breed">
-            <input type="text" id="color" placeholder="Color">
+            <input type="text" id="name" placeholder="Pet's Name" ng-model="hc.name">
+            <input type="text" id="breed" placeholder="Breed" ng-model="hc.breed">
+            <input type="text" id="color" placeholder="Color" ng-model="hc.color">
             <select name="checkedIn" id="checkedIn">
                 <option value=true>Check In</option>
                 <option value=false>Check Out</option>
             </select>
-            <button id="addPet">Book 'em</button>
+            <button ng-click="hc.addPet()">Book 'em</button>
+            {{ hc.petInfo }}
         </div>
         <h2>Inmates</h2>
-        <div id="inmates">
+        <div ng-repeat="pet in hc.pets">
             <table>
                 <thead>
                     <tr>
@@ -32,7 +33,12 @@
                         <th>Checked In?</th>
                     </tr>
                 </thead>
-                <tbody id="petTable">
+                <tbody >
+                    {{ 
+                        <tr>
+                            <td>name</td>
+                        </tr>
+                    }}
                 </tbody>
             </table>
         </div>
