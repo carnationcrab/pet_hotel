@@ -21,7 +21,6 @@
                 <option value=false >Check Out</option>
             </select>
             <button ng-click="hc.addPet()">Book 'em</button>
-            {{ hc.petInfo }}
         </div>
         <h2>Inmates</h2>
         <div>
@@ -40,14 +39,15 @@
                         <td>{{pet.breed}}</td>
                         <td>{{pet.color}}</td>
                         <td ng-if="pet.checkedin">
-                                <button ng-click="hc.toggleCheckIn(pet.id, pet.checkedin)" id="checkOut">Check Out</button>
+                                <button ng-click="hc.toggleCheckIn(pet.id)" id="checkOut">Check Out</button>
                         </td>
                         <td ng-if="pet.checkedin === false">
-                                <button ng-click="hc.toggleCheckIn(pet.id, pet.checkedin)" id="checkIn">Check In</button>
+                                <button ng-click="hc.toggleCheckIn(pet.id)" id="checkIn">Check In</button>
                         </td>
-                        <td ng-if="pet.checkedin === null">
-                                <button ng-click="hc.toggleCheckIn(pet.id, pet.checkedin)" id="checkIn">Check In</button>
+                        <td>
+                            <button ng-click="hc.delete(pet.id)" type="delete">Delete</button>
                         </td>
+
                     </tr>
                 </tbody>
             </table>

@@ -15,7 +15,6 @@ router.get('/', function(req, res) {
                     console.log(queryError);
                     res.sendStatus(500);
                 } else {
-                    console.log('resultObj.rows', resultObj.rows);
                     res.send(resultObj.rows);
                 }
             })
@@ -26,7 +25,6 @@ router.post('/', function(req, res) {
     var newPetObj = req.body;
     console.log('baaaaallin');
     console.log(newPetObj);
-    // res.sendStatus(202);
     pool.connect(function(connectionError, client, done) {
         if(connectionError) {
             console.log(connectionError);
@@ -51,14 +49,12 @@ router.post('/', function(req, res) {
 router.put('/:id', function(req, res) {
     var petId = req.params.id;
     console.log(petId);
-    // res.sendStatus(202);
     pool.connect(function(connectionError, client, done) {
         if(connectionError) {
             console.log(connectionError);
             res.sendStatus(500);
         } else {
             var pQuery = 'UPDATE pet_hotel SET checkedin =NOT checkedin WHERE id = $1;';
-            // var valueArray = [ petId.name, petId.breed, petId.color, petId.checkedin ];
             client.query(pQuery, [petId], function(queryError, resultObj) {
                 done();
                 if(queryError) {
@@ -66,6 +62,29 @@ router.put('/:id', function(req, res) {
                     res.sendStatus(500);
                 } else {
                     console.log('WORD');
+                    res.sendStatus(202);
+                }
+            });
+        }
+    }) 
+});
+
+router.delete('/:id', function(req, res) {
+    var petId = req.params.id;
+    console.log(petId);
+    pool.connect(function(connectionError, client, done) {
+        if(connectionError) {
+            console.log(connectionError);
+            res.sendStatus(500);
+        } else {
+            var pQuery = 'DELETE FROM pet_hotel WHERE id = $1;';
+            client.query(pQuery, [petId], function(queryError, resultObj) {
+                done();
+                if(queryError) {
+                    console.log(queryError);
+                    res.sendStatus(500);
+                } else {
+                    console.log('supercalifragilisticexpealidocious');
                     res.sendStatus(202);
                 }
             });

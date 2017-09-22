@@ -6,8 +6,7 @@ ourApp.controller('HotelController', function($http){
     console.log('NG');
 
     var vm = this;
-    // vm.pet = [];
-    
+
     vm.addPet = function(){
         console.log('IN ADD PET:', vm.name, vm.breed, vm.color);
         var newPet = {
@@ -39,16 +38,23 @@ ourApp.controller('HotelController', function($http){
             vm.pets = response.data;
         })
     }
-    vm.toggleCheckIn = function(id, checkedin) {
-        // if (ifChecked) {
-        //     checkStatus = false
-        // }
-        console.log('in toggle function', id, checkedin);
+    vm.toggleCheckIn = function(id) {
+        console.log('in toggle function', id);
         $http({
             method: 'PUT',
             url: '/pet/' + id,
         }).then(function(response){
         console.log('changes made in PUT', response);
+            vm.getPet();
+        })
+    }
+    vm.delete = function(id) {
+        console.log("in delete");
+        $http({
+            method: 'DELETE',
+            url: '/pet/' + id,
+        }).then(function(response) {
+            console.log('back from delete with', response);
             vm.getPet();
         })
     }    
