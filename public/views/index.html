@@ -15,22 +15,22 @@
             <input type="text" id="name" placeholder="Pet's Name" ng-model="hc.name">
             <input type="text" id="breed" placeholder="Breed" ng-model="hc.breed">
             <input type="text" id="color" placeholder="Color" ng-model="hc.color">
-            <select name="checkedIn" id="checkedIn" ng-model="hc.checkedin">
+
+            <!-- <select name="checkedIn" id="checkedIn" ng-model="hc.checkedin">
                 <option value="" selected>Select An Option</option>
                 <option value=true>Check In</option>
-                <option value=false >Check Out</option>
+                <option value=false >Check Out</option> -->
             </select>
             <button ng-click="hc.addPet()">Book 'em</button>
         </div>
-        <h2>Inmates</h2>
+        <h2>Guests</h2>
         <div>
             <table>
                 <thead>
                     <tr>
                         <th>Name</th>
                         <th>Breed</th>
-                        <th>Color</th>
-                        <th>Checked In</th>
+                        <th>Color</th>                      
                     </tr>
                 </thead>
                 <tbody >
@@ -38,12 +38,12 @@
                         <td>{{pet.name}}</td>
                         <td>{{pet.breed}}</td>
                         <td>{{pet.color}}</td>
-                        <td ng-if="pet.checkedin">
+                        <!-- <td ng-if="pet.checkedin">
                                 <button ng-click="hc.toggleCheckIn(pet.id)" id="checkOut">Check Out</button>
                         </td>
                         <td ng-if="pet.checkedin === false">
                                 <button ng-click="hc.toggleCheckIn(pet.id)" id="checkIn">Check In</button>
-                        </td>
+                        </td> -->
                         <td>
                             <button ng-click="hc.delete(pet.id)" type="delete">Delete</button>
                         </td>
@@ -51,6 +51,15 @@
                     </tr>
                 </tbody>
             </table>
+        </br>
+            <section>
+                <label for="history">Add Visit</label>
+                <select id="history" ng-options="pet.id as pet.name for pet in hc.pets" ng-model="selected">
+                </select>
+                <input type="date" id="dateIn" placeholder="Check in Date" ng-model="hc.dateIn">
+                <input type="date" id="dateOut" placeholder="Check out Date" ng-model="hc.dateOut">                
+                <button ng-click="hc.addVisit(selected, hc.dateIn, hc.dateOut)"></button>
+            </section>
         </div>
     </section>
 </body>

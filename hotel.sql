@@ -1,9 +1,16 @@
 CREATE TABLE pet_hotel (
-	id serial PRIMARY KEY,
-	name varchar (23),
-	breed varchar (23),
-	color varchar (23),
-	checkedIn boolean DEFAULT false);
+    id SERIAL PRIMARY KEY,
+    name VARCHAR (50),
+    breed VARCHAR (50),
+    color VARCHAR (50)
+);
+
+CREATE TABLE visits (
+	id SERIAL PRIMARY KEY,
+	check_in TIMESTAMP,
+	check_out TIMESTAMP, 
+	pet_id INT REFERENCES pet_hotel(id) ON DELETE CASCADE
+);
 	
 INSERT INTO pet_hotel (name, breed, color, checkedIn) 
 VALUES ('Atom', 'Border Collie', 'Blue', false),

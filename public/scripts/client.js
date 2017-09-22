@@ -13,7 +13,7 @@ ourApp.controller('HotelController', function($http){
             name: vm.name,
             breed: vm.breed,
             color: vm.color,
-            checkedin: vm.checkedin
+            // checkedin: vm.checkedin
         }
         
         console.log('new pet: -------> XD: ', newPet);
@@ -21,7 +21,6 @@ ourApp.controller('HotelController', function($http){
             method: 'POST',
             url: '/pet',
             data: newPet
-            // data: { name: vm.name, breed: vm.breed, color: vm.color, checkedin: vm.checkedin}
         }).then( function(response) {
             console.log('post from server: ', response);
             vm.getPet();
@@ -38,11 +37,15 @@ ourApp.controller('HotelController', function($http){
             vm.pets = response.data;
         })
     }
-    vm.toggleCheckIn = function(id) {
-        console.log('in toggle function', id);
+    vm.addVisit = function(id, dateIn, dateOut) {
+        console.log('in toggle function', id, dateIn, dateOut);
         $http({
-            method: 'PUT',
-            url: '/pet/' + id,
+            method: 'POST',
+            url: '/visits/' + id,
+            data: {
+                dateIn: dateIn,
+                dateOut: dateOut
+            }
         }).then(function(response){
         console.log('changes made in PUT', response);
             vm.getPet();
