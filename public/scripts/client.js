@@ -6,6 +6,7 @@ ourApp.controller('HotelController', function($http){
     console.log('NG');
 
     var vm = this;
+    // vm.pet = [];
     
     vm.addPet = function(){
         console.log('IN ADD PET:', vm.name, vm.breed, vm.color);
@@ -38,5 +39,17 @@ ourApp.controller('HotelController', function($http){
             vm.pets = response.data;
         })
     }
-    
+    vm.toggleCheckIn = function(id, checkedin) {
+        // if (ifChecked) {
+        //     checkStatus = false
+        // }
+        console.log('in toggle function', id, checkedin);
+        $http({
+            method: 'PUT',
+            url: '/pet/' + id,
+        }).then(function(response){
+        console.log('changes made in PUT', response);
+            vm.getPet();
+        })
+    }    
 });
